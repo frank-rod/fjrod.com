@@ -2,6 +2,14 @@
 
 Este repositorio contiene el código fuente de mi sitio web personal [fjrod.com](https://fjrod.com), desarrollado con tecnologías modernas para mostrar mi perfil profesional, proyectos y habilidades.
 
+## Versión 1.2.0
+La versión actual incluye:
+- Diseño responsivo y moderno con soporte para temas claro/oscuro
+- Navegación fluida con efectos animados y partículas interactivas
+- Secciones de proyectos, habilidades, experiencia y educación
+- Optimización de imágenes según el tema seleccionado
+- Mejoras visuales con bordes redondeados en cajas y optimización de alturas
+
 ## Tecnologías Utilizadas
 
 - **[Next.js 15](https://nextjs.org/)**: Framework React con renderizado del lado del servidor
