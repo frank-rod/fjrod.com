@@ -87,7 +87,7 @@ function BentoDemo() {
       {/* Primera fila - 3 proyectos (1/3 cada uno) */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {projects.slice(0, 3).map((project) => (
-          <div key={project.name} className="h-[20rem]">
+          <div key={project.name} className="h-[18rem]">
             <BentoCard {...project} />
           </div>
         ))}
@@ -96,7 +96,7 @@ function BentoDemo() {
       {/* Segunda fila - 2 proyectos (1/2 cada uno) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.slice(3, 5).map((project) => (
-          <div key={project.name} className="h-[20rem]">
+          <div key={project.name} className="h-[18rem]">
             <BentoCard {...project} />
           </div>
         ))}

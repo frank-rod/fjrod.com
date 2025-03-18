@@ -8,7 +8,7 @@ export function EducationSection() {
       </h2>
       
       <div className="space-y-10">
-        <div>
+        <div className="bg-background rounded-2xl p-6 shadow-sm border border-border">
           <h3 className="text-xl font-bold">Tecnológico de Monterrey, Campus Monterrey</h3>
           <p className="text-sm text-muted-foreground">2018 - 2022</p>
           <p className="mt-2">Licenciatura en Finanzas | Especialización en Fintech & Data Science</p>
@@ -18,7 +18,7 @@ export function EducationSection() {
           </ul>
         </div>
         
-        <div>
+        <div className="bg-background rounded-2xl p-6 shadow-sm border border-border">
           <h3 className="text-xl font-bold">Certificados y Diplomas</h3>
           <ul className="list-disc list-outside ml-5 mt-2 text-muted-foreground">
             <li><span className="font-medium">Fintech & Data Science</span> - Instituto de Estudios Bursátiles de Madrid, España - Estudiante de Intercambio</li>
