@@ -4,17 +4,21 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
-  experimental: {
-    turbo: {
-      rules: {
-        // Allows importing SVG files
-        '*.svg': {
-          loaders: ['@svgr/webpack', 'file-loader'],
-          as: 'asset',
-        },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
       },
-    },
+    ],
+  },
+  webpack(config) {
+    // Configuración para SVG
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    });
+
+    return config;
   }
 };
 

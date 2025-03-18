@@ -30,11 +30,14 @@ export const ThemeImage = ({
   
   return (
     <div className="relative h-full w-full">
-      <img 
+      <Image 
         src={src} 
-        alt={alt} 
-        className={props.className} 
-        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+        alt={alt || "Imagen temática"}
+        fill={true}
+        {...props}
+        className={`object-cover ${props.className || ''}`}
+        sizes="(max-width: 768px) 100vw, 50vw"
+        priority={true}
       />
     </div>
   )
