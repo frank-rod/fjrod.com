@@ -1,11 +1,11 @@
 "use client"
 
-import { ThemeSwitcher } from "./ui/theme-switcher"
 import { useState, useEffect } from "react"
 import { BookOpen, FileText, Briefcase, Phone, User, GraduationCap, Lightbulb } from "lucide-react"
 import { NavBar } from "@/components/ui/tubelight-navbar"
 import { useTheme } from "next-themes"
 import { ThemeImage } from "@/lib/theme-image"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 export function Navbar() {
   const { theme } = useTheme()
@@ -40,13 +40,14 @@ export function Navbar() {
           )}
           <span className="font-bold text-xl">Francisco J. Rodriguez</span>
         </div>
-        
-        <div className="flex items-center gap-4 z-[60]">
-          <ThemeSwitcher />
-        </div>
       </div>
       
-      <NavBar items={navItems} className="sm:right-24" />
+      <div className="fixed top-4 right-8 flex items-center z-[60]">
+        <div className="mr-4">
+          <ThemeToggle />
+        </div>
+        <NavBar items={navItems} />
+      </div>
     </header>
   )
 } 
