@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { scrollToElement } from "@/lib/smooth-scroll"
 
 interface NavItem {
   name: string
@@ -18,7 +19,7 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+  const [activeTab, setActiveTab] = useState<string | null>(null)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -35,8 +36,18 @@ export function NavBar({ items, className }: NavBarProps) {
   useEffect(() => {
     const handleScroll = () => {
       const sections = items.map((item) => item.url.replace('#', ''))
+      const scrollTop = window.scrollY
+      const headerHeight = 60 // Altura aproximada del header
+      const landingThreshold = 100 // Umbral para considerar que estás en la landing
+      
+      // Si estás en la parte superior (landing), no selecciones ninguna sección
+      if (scrollTop < landingThreshold) {
+        setActiveTab(null)
+        return
+      }
       
       const getOffset = () => window.innerHeight * 0.2
+      let foundActiveSection = false
       
       for (const section of sections) {
         const element = document.getElementById(section)
@@ -46,14 +57,22 @@ export function NavBar({ items, className }: NavBarProps) {
             const matchingItem = items.find(item => item.url === `#${section}`)
             if (matchingItem && matchingItem.name !== activeTab) {
               setActiveTab(matchingItem.name)
+              foundActiveSection = true
             }
             break
           }
         }
       }
+      
+      // Si no encontramos una sección activa y no estamos en la landing, mantén la última sección activa
+      if (!foundActiveSection && scrollTop >= landingThreshold) {
+        // No hacer nada, mantener la última sección activa
+      }
     }
     
     window.addEventListener('scroll', handleScroll)
+    handleScroll() // Llamar una vez al inicio para establecer el estado correcto
+    
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
@@ -70,12 +89,16 @@ export function NavBar({ items, className }: NavBarProps) {
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
+          const sectionId = item.url.replace('#', '')
 
           return (
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => {
+                setActiveTab(item.name)
+                scrollToElement(sectionId, e)
+              }}
               className={cn(
                 "relative cursor-pointer text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
@@ -110,4 +133,4 @@ export function NavBar({ items, className }: NavBarProps) {
       </div>
     </div>
   )
-} 
+}
