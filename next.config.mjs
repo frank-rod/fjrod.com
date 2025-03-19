@@ -4,10 +4,12 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Permitir imágenes de ImageKit
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'ik.imagekit.io',
+        pathname: '/**',
       },
     ],
   },
@@ -22,4 +24,4 @@ const nextConfig = {
   }
 };
 
-export default nextConfig; 
+export default nextConfig;
