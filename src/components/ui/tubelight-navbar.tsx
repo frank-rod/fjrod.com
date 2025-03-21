@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { handleSmoothScrollClick } from "@/lib/smooth-scroll"
 
 interface NavItem {
   name: string
@@ -18,7 +19,7 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
+  const [activeTab, setActiveTab] = useState("")
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -38,6 +39,12 @@ export function NavBar({ items, className }: NavBarProps) {
       
       const getOffset = () => window.innerHeight * 0.2
       
+      // Si estamos en la parte superior, no seleccionamos nada
+      if (window.scrollY < 100) {
+        setActiveTab("")
+        return
+      }
+      
       for (const section of sections) {
         const element = document.getElementById(section)
         if (element) {
@@ -54,10 +61,26 @@ export function NavBar({ items, className }: NavBarProps) {
     }
     
     window.addEventListener('scroll', handleScroll)
+    // Ejecutamos una vez al cargar para establecer el estado inicial
+    handleScroll()
+    
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [items, activeTab])
+
+  // Manejador de clic para los elementos de navegación
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    handleSmoothScrollClick(e, url)
+    
+    // Actualizamos el estado activo solo si no estamos en la parte superior
+    if (window.scrollY >= 100) {
+      const matchingItem = items.find(item => item.url === url)
+      if (matchingItem) {
+        setActiveTab(matchingItem.name)
+      }
+    }
+  }
 
   return (
     <div
@@ -75,7 +98,7 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => handleNavClick(e, item.url)}
               className={cn(
                 "relative cursor-pointer text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",

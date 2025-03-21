@@ -1,11 +1,11 @@
 "use client"
 
-import { ThemeSwitcher } from "./ui/theme-switcher"
 import { useState, useEffect } from "react"
 import { BookOpen, FileText, Briefcase, Phone, User, GraduationCap, Lightbulb } from "lucide-react"
 import { NavBar } from "@/components/ui/tubelight-navbar"
 import { useTheme } from "next-themes"
 import { ThemeImage } from "@/lib/theme-image"
+import { ThemeToggleFloating } from "@/components/ui/theme-toggle-floating"
 
 export function Navbar() {
   const { theme } = useTheme()
@@ -42,11 +42,13 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center gap-4 z-[60]">
-          <ThemeSwitcher />
+          {/* Este espacio queda vacío o puedes añadir otros elementos */}
         </div>
       </div>
       
       <NavBar items={navItems} className="sm:right-24" />
+      
+      <ThemeToggleFloating />
     </header>
   )
 } 
