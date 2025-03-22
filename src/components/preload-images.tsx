@@ -23,6 +23,8 @@ export function PreloadImages() {
       linkElement.fetchPriority = 'high'
       document.head.appendChild(linkElement)
     })
+    
+    console.log('Imágenes precargadas:', imageUrls)
   }, [])
   
   if (!loaded) return null
@@ -30,14 +32,14 @@ export function PreloadImages() {
   return (
     <div className="hidden">
       {Object.values(REMOTE_IMAGES).map((src, index) => (
-        <Image 
-          key={index}
-          src={src}
-          alt="Preloaded image"
-          width={1}
-          height={1}
-          priority
-        />
+        <div key={index} style={{ display: 'none' }}>
+          <img 
+            src={src}
+            alt="Preloaded image"
+            width={1}
+            height={1}
+          />
+        </div>
       ))}
     </div>
   )

@@ -4,10 +4,11 @@
  */
 
 export const REMOTE_IMAGES = {
-  // Ejemplo: puedes reemplazar estas URLs con las de tus propias imágenes
-  heroBackground: "https://ik.imagekit.io/tuusuario/hero-background.jpg",
-  profilePhoto: "https://ik.imagekit.io/tuusuario/profile-photo.jpg",
-  projectThumbnail1: "https://ik.imagekit.io/tuusuario/project1.jpg",
-  projectThumbnail2: "https://ik.imagekit.io/tuusuario/project2.jpg",
-  // Añade más imágenes según necesites
+  // Imágenes de perfil para ambos temas
+  profileDarkTheme: "https://ik.imagekit.io/saintbelikin/me%20for%20black-theme.png?updatedAt=1742353249374",
+  profileLightTheme: "https://ik.imagekit.io/saintbelikin/me%20for%20white-theme.png?updatedAt=1742353249281",
+  
+  // Logos para ambos temas
+  logoDarkTheme: "https://ik.imagekit.io/saintbelikin/FJROD%20(1000%20x%20200%20px)%20(3).png?updatedAt=1742354421533",
+  logoLightTheme: "https://ik.imagekit.io/saintbelikin/FJROD%20(1000%20x%20200%20px)%20(2).png?updatedAt=1742354421685",
 } 

@@ -8,6 +8,7 @@ import { ArrowDown } from "lucide-react"
 import { InteractiveHoverButton } from "./ui/interactive-hover-button"
 import { ThemeImage } from "@/lib/theme-image"
 import { handleSmoothScrollClick } from "@/lib/smooth-scroll"
+import { REMOTE_IMAGES } from "@/lib/remote-images"
 
 export function HeroSection() {
   const { theme } = useTheme()
@@ -34,13 +35,15 @@ export function HeroSection() {
     <section className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden">
       <div className="z-10 flex flex-col items-center justify-center px-6 text-center">
         {mounted && (
-          <div className="relative h-48 w-48 mb-8 rounded-full overflow-hidden border-4 border-primary">
-            <ThemeImage
-              darkSrc="/images/me-dark.svg"
-              lightSrc="/images/me-light.svg"
-              alt="Francisco J. Rodriguez"
-              className="w-full h-full object-cover"
-            />
+          <div className="relative h-48 w-48 mb-8 rounded-full overflow-hidden border-4 border-primary p-2">
+            <div className="w-full h-full rounded-full overflow-hidden">
+              <ThemeImage
+                darkSrc={REMOTE_IMAGES.profileDarkTheme}
+                lightSrc={REMOTE_IMAGES.profileLightTheme}
+                alt="Francisco J. Rodriguez"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         )}
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">

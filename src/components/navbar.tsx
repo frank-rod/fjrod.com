@@ -6,6 +6,7 @@ import { NavBar } from "@/components/ui/tubelight-navbar"
 import { useTheme } from "next-themes"
 import { ThemeImage } from "@/lib/theme-image"
 import { ThemeToggleFloating } from "@/components/ui/theme-toggle-floating"
+import { REMOTE_IMAGES } from "@/lib/remote-images"
 
 export function Navbar() {
   const { theme } = useTheme()
@@ -27,18 +28,17 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 py-4 px-6 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           {mounted && (
-            <div className="relative w-8 h-8">
+            <div className="relative h-8 w-32">
               <ThemeImage
-                darkSrc="/images/logo-dark.svg"
-                lightSrc="/images/logo-light.svg"
-                alt="Logo"
+                darkSrc={REMOTE_IMAGES.logoDarkTheme}
+                lightSrc={REMOTE_IMAGES.logoLightTheme}
+                alt="Logo Francisco J. Rodriguez"
                 className="object-contain"
               />
             </div>
           )}
-          <span className="font-bold text-xl">Francisco J. Rodriguez</span>
         </div>
         
         <div className="flex items-center gap-4 z-[60]">
